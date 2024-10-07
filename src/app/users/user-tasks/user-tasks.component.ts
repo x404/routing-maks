@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { UsersService } from "../users.service";
 
 @Component({
   selector: 'app-user-tasks',
@@ -8,4 +9,7 @@ import { Component, input } from '@angular/core';
 })
 export class UserTasksComponent {
   userId = input.required<string>();
+  private usersService = inject(UsersService);
+
+  userName = computed(() => this.usersService.users.find(u => u.id === this.userId())?.name);
 }
