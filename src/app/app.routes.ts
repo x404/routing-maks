@@ -21,8 +21,12 @@ export const routes: Routes = [
       {
         path: 'tasks/new',
         component: NewTaskComponent
+      },
+      {
+        path: '**',
+        component: NoTaskComponent
       }
-    ]
+    ],
   },
 //   {
 //   path: 'tasks',
