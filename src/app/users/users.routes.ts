@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'tasks',
-    pathMatch: 'prefix',
+    pathMatch: 'full',
   },
   {
     path: 'tasks',
