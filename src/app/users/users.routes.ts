@@ -1,8 +1,7 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
-import { TasksComponent } from "../tasks/tasks.component";
-import { NewTaskComponent } from "../tasks/new-task/new-task.component";
-import { NoTaskComponent } from "../tasks/no-task/no-task.component";
+import { TasksComponent, resolveUserTasks } from '../tasks/tasks.component';
+import { NewTaskComponent } from '../tasks/new-task/new-task.component';
 
 export const routes: Routes = [
   {
@@ -11,15 +10,16 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'tasks',
+    path: 'tasks', // <your-domain>/users/<uid>/tasks
     component: TasksComponent,
+
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    resolve: {
+      userTasks: resolveUserTasks,
+    },
   },
   {
     path: 'tasks/new',
-    component: NewTaskComponent
+    component: NewTaskComponent,
   },
-  {
-    path: '**',
-    component: NoTaskComponent
-  }
-]
+];
